@@ -1,0 +1,15 @@
+
+#center {
+  text-align: center;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+#iban-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  max-width: 800px;
+}

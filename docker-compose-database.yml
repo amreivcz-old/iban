@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: iban-pg
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    configs:
+      - source: init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_PASSWORD=postgres"
+configs:
+  init.sql:
+    content: |
+      CREATE USER dev_user PASSWORD 'dev_user';
+      CREATE DATABASE iban WITH OWNER dev_user;
+      ALTER USER dev_user SUPERUSER;
+volumes:
+  db:
+    driver: local
